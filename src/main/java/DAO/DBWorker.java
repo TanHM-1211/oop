@@ -35,7 +35,6 @@ public class DBWorker {
     		      GRAPHDB_SERVER, REPOSITORY_ID);
     	repository.initialize();
     	this.connection = repository.getConnection();
-    	this.connection.begin();
     }
 	
 //	public String makeInsertRelationshipQuery(ArrayList<String> S, ArrayList<String>  P, ArrayList<String>  O) {
@@ -114,7 +113,7 @@ public class DBWorker {
 	
 	public  TupleQueryResult executeQuery(String query) {
 		TupleQueryResult res = null;
-		
+		this.connection.begin();
 
 			TupleQuery tupleQuery = this.connection
 				      .prepareTupleQuery(QueryLanguage.SPARQL, query);
@@ -131,19 +130,22 @@ public class DBWorker {
 	        } finally {
 	          res.close();
 	        }    
-				
-		if (res == null) System.out.println("1111111111111111111111111111111111111111111111111");
+		    this.connection.close();
 		return res;
 	}
 	
-	public void convert(TupleQueryResult res)
+	public String convertToString(TupleQueryResult tqr)
 	{
-		while (res.hasNext()) {
-	          BindingSet bindingSet = res.next();
-
-	          String name = bindingSet.getValue("x").stringValue();
-	          System.out.println(name);
+		String res = "";
+		BindingSet bindingSet;
+		while (tqr.hasNext()) {
+	          bindingSet = tqr.next();
+	          for (String s: bindingSet.getBindingNames())
+	          {
+	        	  res += s + " " + bindingSet.getValue(s) + "\n";
+	          }
 	      }
+		return res;
 	}
 	
 }

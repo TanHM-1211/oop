@@ -1,4 +1,4 @@
-package generatedata;
+package generate.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;

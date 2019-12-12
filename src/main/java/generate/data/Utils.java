@@ -1,4 +1,4 @@
-package generatedata;
+package generate.data;
 
 import model.*;
 import model.SimpleObject;
@@ -14,7 +14,7 @@ import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.model.util.ModelBuilder;
 
-public class generateModel {
+public class Utils {
 	private static final String PERSON = "http://oop/person/";
 	private static final String ORGANIZATION = "http://oop/organization/";
 	private static final String AGREEMENT = "http://oop/agreement/";
@@ -25,7 +25,7 @@ public class generateModel {
 //	private ArrayList<String> labels = new ArrayList<String>(
 //			Arrays.asList(new String[] {"hasId", "hasLabel", "hasDescription"}));
 	
-	public generateModel() {
+	public Utils() {
 
 	}
 	
