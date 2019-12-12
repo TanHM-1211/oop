@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author BQ
@@ -14,34 +16,43 @@ package model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class Agreement {
-    private String ID;
+public class Agreement extends Object{
+    private int id;
     private String label;
     private String description;
-    private Time time;
+    private Date date;
     private Location location;
     
-    public Agreement(){
-    }
     
-    public Agreement( String ID, String label, String desc,Time time,Location local){
-        this.ID = ID;
-        this.label=label;
-        this.description=desc;
-        this.time = time;
-        this.location = local;
-    }
+    public Agreement(int id, String label, String description, Date time, Location location) {
+		this.id = id;
+		this.label = label;
+		this.description = description;
+		this.date = time;
+		this.location = location;
+	}
+
+
+	public Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(Date time) {
+		this.date = time;
+	}
+
+
+	public Location getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
     
-    public Agreement(String label){
-        this.label=label;
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public void setLabel(String label) {
-        this.label = label;
-    }
+
 }
 

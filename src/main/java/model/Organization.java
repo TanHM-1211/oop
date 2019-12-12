@@ -9,31 +9,28 @@ package model;
  *
  * @author BQ
  */
-public class Organization {
-    private String ID;
+public class Organization extends Object{
+    private int id;
     private String label;
     private String description;
     private Location location;
     public Organization(){
     }
 
-    public Organization(String ID, String label, String description, Location location) {
-        this.ID = ID;
+    public Organization(int id, String label, String description, Location location) {
+        this.id = id;
         this.label = label;
         this.description = description;
         this.location = location;
     }
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
     
-    public Organization(String label) {
-        this.label = label;
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public void setLabel(String label) {
-        this.label = label;
-    }
 }
 

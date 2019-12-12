@@ -5,33 +5,36 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author BQ
  */
-public class Person {
-    private String ID;
+public class Person extends Object{
+    private int id;
     private String label;
     private String description;
+    private Date date_of_birth;
     public Person(){
     }
+    
+    public Person(int id, String label, String description, Date date_of_birth) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.description = description;
+		this.date_of_birth = date_of_birth;
+	}
 
-    public Person(String ID, String label, String description) {
-        this.ID = ID;
-        this.label = label;
-        this.description = description;
-    }
+	public Date getDate_of_birth() {
+		return date_of_birth;
+	}
+
+	public void setDate_of_birth(Date date_of_birth) {
+		this.date_of_birth = date_of_birth;
+	}
+
     
-    public Person(String label) {
-        this.label = label;
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public void setLabel(String label) {
-        this.label = label;
-    }
 }
 

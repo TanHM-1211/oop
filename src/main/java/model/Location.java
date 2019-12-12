@@ -9,29 +9,18 @@ package model;
  *
  * @author BQ
  */
-public class Location {
-    private String ID;
+public class Location extends Object{
+    private int id;
     private String label;
     private String description;
     public Location(){
     }
 
-    public Location(String ID, String label, String description) {
-        this.ID = ID;
+    public Location(int id, String label, String description) {
+        this.id = id;
         this.label = label;
         this.description = description;
     }
     
-    public Location(String label) {
-        this.label = label;
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public void setLabel(String label) {
-        this.label = label;
-    }
     
 }

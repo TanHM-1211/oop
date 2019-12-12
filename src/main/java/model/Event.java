@@ -5,33 +5,44 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author BQ
  */
-public class Event {
-    private String ID;
+public class Event extends Object{
+    private int id;
     private String label;
     private String description;
-    public Event(){
-    }
+    private Date date;
+    private Location loccation;
+   
 
-    public Event(String ID, String label, String description) {
-        this.ID = ID;
-        this.label = label;
-        this.description = description;
-    }
-    
-    public Event(String label) {
-        this.label = label;
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public void setLabel(String label) {
-        this.label = label;
-    }
+	public Event(int id, String label, String description, Date date, Location loccation) {
+		this.id = id;
+		this.label = label;
+		this.description = description;
+		this.date = date;
+		this.loccation = loccation;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Location getLocation() {
+		return loccation;
+	}
+
+	public void setLocation(Location loccation) {
+		this.loccation = loccation;
+	}
+	
+
 }
 
