@@ -13,13 +13,9 @@ public class Location extends SimpleObject{
     private int id;
     private String label;
     private String description;
-    public Location(){
-    }
 
     public Location(int id, String label, String description) {
-        this.id = id;
-        this.label = label;
-        this.description = description;
+    	super(id, label, description);
     }
     
     

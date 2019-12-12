@@ -39,47 +39,47 @@ public class GenerateObjects {
 		return cal.getTime();
 	}
 	
-	public void generatePerson(ModelBuilder builder, int num, int batch_size)
-	{
-		ArrayList<Person> people = new ArrayList<Person>(Arrays.asList(new Person[batch_size]));
-//		System.out.println(people.size());
-		int cnt = 0;
-		try{
-            BufferedReader first_name_reader, last_name_reader, description_reader;
-            first_name_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/girl.txt"));
-            last_name_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/ho.txt"));
-            description_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/description.txt"));
-            String first_name, last_name, description;
-            while((last_name = last_name_reader.readLine()) != null){
-                while((first_name = first_name_reader.readLine()) != null)
-                {
-                	while((description = description_reader.readLine()) != null)
-                	{
-                		people.set(cnt%batch_size, new Person(cnt, last_name + first_name, description, getRandomDate()));
-                		cnt++;
-                		System.out.println(cnt);
-                		if (cnt%batch_size == 0)
-                		{
-                			this.util.addPerson(builder, people);
-                		}
-                		else if (cnt > num)
-                		{
-                			first_name_reader.close();
-                            last_name_reader.close();
-                            description_reader.close();
-                            return;
-                		}
-                	}
-                }
-            }
-            first_name_reader.close();
-            last_name_reader.close();
-            description_reader.close();
-        } catch (IOException ex1) {
-            System.out.println("Error: "+ex1);
-        }
-        return;
-	}
+//	public void generatePerson(ModelBuilder builder, int num, int batch_size)
+//	{
+//		ArrayList<Person> people = new ArrayList<Person>(Arrays.asList(new Person[batch_size]));
+////		System.out.println(people.size());
+//		int cnt = 0;
+//		try{
+//            BufferedReader first_name_reader, last_name_reader, description_reader;
+//            first_name_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/girl.txt"));
+//            last_name_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/ho.txt"));
+//            description_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/description.txt"));
+//            String first_name, last_name, description;
+//            while((last_name = last_name_reader.readLine()) != null){
+//                while((first_name = first_name_reader.readLine()) != null)
+//                {
+//                	while((description = description_reader.readLine()) != null)
+//                	{
+//                		people.set(cnt%batch_size, new Person(cnt, last_name + first_name, description, getRandomDate()));
+//                		cnt++;
+//                		System.out.println(cnt);
+//                		if (cnt%batch_size == 0)
+//                		{
+//                			this.util.addPerson(builder, people);
+//                		}
+//                		else if (cnt > num)
+//                		{
+//                			first_name_reader.close();
+//                            last_name_reader.close();
+//                            description_reader.close();
+//                            return;
+//                		}
+//                	}
+//                }
+//            }
+//            first_name_reader.close();
+//            last_name_reader.close();
+//            description_reader.close();
+//        } catch (IOException ex1) {
+//            System.out.println("Error: "+ex1);
+//        }
+//        return;
+//	}
 	
 	public ArrayList<Person> generatePerson(ModelBuilder builder, int num)
 	{
@@ -102,7 +102,7 @@ public class GenerateObjects {
             	for (String first_name: first_names)
             		for (String description: descriptions)
                 	{
-                		people.set(cnt, new Person(cnt, last_name + first_name, description, getRandomDate()));
+                		people.set(cnt, new Person(cnt, last_name + " " + first_name, description, getRandomDate()));
                 		cnt++;
                 		System.out.println(cnt);
                 		if (cnt >= num)
@@ -124,4 +124,32 @@ public class GenerateObjects {
         }
         return people ;
 	}
+	
+	public ArrayList<Location> generateLocation(ModelBuilder builder, int num)
+	{
+		ArrayList<Location> locations = new ArrayList<Location>(Arrays.asList(new Location[num]));
+		int cnt = 0;
+		try{
+            BufferedReader location_reader;
+            location_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/girl.txt"));
+            String des;
+            while((des = location_reader.readLine()) != null) 
+            {
+            	locations.set(cnt, new Location(cnt, des, ""));
+            	cnt++;
+        		if (cnt >= num)
+        		{
+        			this.util.addLocation(builder, locations);
+        			location_reader.close();
+        		}
+            }
+            this.util.addLocation(builder, locations);
+			location_reader.close();
+        } catch (IOException ex1) {
+            System.out.println("Error: "+ex1);
+        }
+        return locations ;
+	}
+	
+	
 }

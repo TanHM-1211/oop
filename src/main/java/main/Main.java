@@ -17,9 +17,9 @@ public class Main {
 		System.out.println(q);
 		DBWorker worker = new DBWorker();
 		System.out.println(worker.convertToString(worker.executeQuery(q)));
-//		GenerateObjects genO = new GenerateObjects();
-//		ModelBuilder builder = new ModelBuilder();
-//		genO.generatePerson(builder, 100000);
-//		worker.addModel(builder.build());
+		GenerateObjects genO = new GenerateObjects();
+		ModelBuilder builder = new ModelBuilder();
+		genO.generatePerson(builder, 100000);
+		worker.addModel(builder.build());
 	}
 }
