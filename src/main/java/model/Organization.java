@@ -9,7 +9,7 @@ package model;
  *
  * @author BQ
  */
-public class Organization extends Object{
+public class Organization extends SimpleObject{
     private int id;
     private String label;
     private String description;

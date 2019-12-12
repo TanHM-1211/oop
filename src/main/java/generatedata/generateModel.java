@@ -1,10 +1,11 @@
 package generatedata;
 
 import model.*;
-import model.Object;
+import model.SimpleObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.zip.CheckedOutputStream;
 
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Literal;
@@ -13,18 +14,18 @@ import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.model.util.ModelBuilder;
 
-public class generateIRI {
-	private static final String PERSON = "<http://oop/person/>";
-	private static final String ORGANIZATION = "<http://oop/organization/>";
-	private static final String AGREEMENT = "<http://oop/agreement/>";
-	private static final String COUNTRY = "<http://oop/country/>";
-	private static final String EVENT = "<http://oop/event/>";
-	private static final String LOCATION = "<http://oop/location/>";
+public class generateModel {
+	private static final String PERSON = "http://oop/person/";
+	private static final String ORGANIZATION = "http://oop/organization/";
+	private static final String AGREEMENT = "http://oop/agreement/";
+	private static final String COUNTRY = "http://oop/country/";
+	private static final String EVENT = "http://oop/event/";
+	private static final String LOCATION = "http://oop/location/";
 	private ValueFactory valueFactory = SimpleValueFactory.getInstance();
 //	private ArrayList<String> labels = new ArrayList<String>(
 //			Arrays.asList(new String[] {"hasId", "hasLabel", "hasDescription"}));
 	
-	public generateIRI() {
+	public generateModel() {
 
 	}
 	
@@ -86,33 +87,72 @@ public class generateIRI {
 //		}
 //	}
 	
-	public void addSimpleNode(ModelBuilder builder, ArrayList<Object> objs, String prefix, String type)
+	public void addSimple(ModelBuilder builder, SimpleObject obj, String prefix, String type)
 	{
-		for (Object obj: objs)
-		{
 			builder.setNamespace("pref", prefix).subject("pref:"+type+obj.getId())
 				.add("pref:hasId", obj.getId())
 				.add("pref:hasLabel", obj.getLabel())
 				.add("pref:hasDescription", obj.getDescription());
-		}
+		
 	}
 	
-	public void addPersonNode(ModelBuilder builder, ArrayList<Person> people)
+	public void addPerson(ModelBuilder builder, ArrayList<Person> people)
 	{
 		for (Person obj: people)
 		{
+			this.addSimple(builder, obj, PERSON, "person");
 			builder.setNamespace("pref", PERSON).subject("pref:person"+obj.getId())
 				.add("pref:hasDate_of_birth", obj.getDate_of_birth());
 		}
 	}
 	
-	public void addOrganizationNode(ModelBuilder builder, ArrayList<Organization> orgs)
+	public void addOrganization(ModelBuilder builder, ArrayList<Organization> orgs)
 	{
 		for (Organization obj: orgs)
 		{
-			builder.setNamespace("pref", ORGANIZATION).setNamespace("loc", LOCATION)
+			this.addSimple(builder, obj, ORGANIZATION, "organization");
+			builder.setNamespace("pref", ORGANIZATION)
 				.subject("pref:organization"+obj.getId())
-				.add("loc:hasLocation", );
+				.add("pref:hasLocation ", "<" + LOCATION + "/location"+obj.getLocation().getId() + ">");
 		}
 	}
+	
+	public void addAgreement(ModelBuilder builder, ArrayList<Agreement> agrs)
+	{
+		for (Agreement obj: agrs)
+		{
+			this.addSimple(builder, obj, AGREEMENT, "agreement");
+			builder.setNamespace("pref", AGREEMENT).subject("pref:agreement"+obj.getId())
+				.add("pref:takePlaceOn", obj.getDate());
+		}
+	}
+	
+	public void addEvent(ModelBuilder builder, ArrayList<Event> events)
+	{
+		for (Event obj: events)
+		{
+			this.addSimple(builder, obj, EVENT, "event");
+			builder.setNamespace("pref", EVENT)
+				.subject("pref:event"+obj.getId())
+				.add("pref:takePlaceOn", obj.getDate())
+				.add("pref:hasLocation ", "<" + LOCATION + "/location"+obj.getLocation().getId() + ">");		
+		}
+	}
+	
+	public void addLocation(ModelBuilder builder, ArrayList<Location> locations)
+	{
+		for (Location obj: locations)
+		{
+			this.addSimple(builder, obj, LOCATION, "location");
+		}
+	}
+	
+	public void addCountry(ModelBuilder builder, ArrayList<Country> countries)
+	{
+		for (Country obj: countries)
+		{
+			this.addSimple(builder, obj, COUNTRY, "country");
+		}
+	}
+	
 }

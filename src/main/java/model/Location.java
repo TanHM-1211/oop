@@ -9,7 +9,7 @@ package model;
  *
  * @author BQ
  */
-public class Location extends Object{
+public class Location extends SimpleObject{
     private int id;
     private String label;
     private String description;

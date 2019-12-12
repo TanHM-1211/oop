@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import model.Object;
+import model.SimpleObject;
 import model.Subject;
 
 /**
@@ -45,7 +45,7 @@ public class ReaderFromFile {
         return;
     }
 
-    public void ReadObject(Object[] objects, String object) {
+    public void ReadObject(SimpleObject[] objects, String object) {
         try {
             File f = new File("data/" + object + ".txt");
             FileReader fr;
@@ -56,7 +56,7 @@ public class ReaderFromFile {
             String line;
             int count = 0;
             while((line = br.readLine()) != null){
-                objects[count ++] = new Object(line);
+                objects[count ++] = new SimpleObject(line);
             }
         
             fr.close();
@@ -67,7 +67,7 @@ public class ReaderFromFile {
         return;
     }
     
-    public void Read(Subject[] subjects, Object[] objects, String subject, String object) {
+    public void Read(Subject[] subjects, SimpleObject[] objects, String subject, String object) {
         ReaderFromFile f = new ReaderFromFile();
         f.ReadSubject(subjects, subject);
         f.ReadObject(objects, object);

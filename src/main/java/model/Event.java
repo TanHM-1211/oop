@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author BQ
  */
-public class Event extends Object{
+public class Event extends SimpleObject{
     private int id;
     private String label;
     private String description;

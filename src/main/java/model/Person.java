@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author BQ
  */
-public class Person extends Object{
+public class Person extends SimpleObject{
     private int id;
     private String label;
     private String description;

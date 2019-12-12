@@ -9,7 +9,7 @@ package model;
  *
  * @author BQ
  */
-public class Country extends Object{
+public class Country extends SimpleObject{
     private int id;
     private String label;
     private String description;

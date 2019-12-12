@@ -16,7 +16,7 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class Agreement extends Object{
+public class Agreement extends SimpleObject{
     private int id;
     private String label;
     private String description;

@@ -9,14 +9,14 @@ package model;
  *
  * @author BQ
  */
-public class Object {
+public class SimpleObject {
     private int id;
     private String label;
     private String description;
-    public Object(){
+    public SimpleObject(){
     }
 
-    public Object(int id, String label, String description) {
+    public SimpleObject(int id, String label, String description) {
         this.id = id;
         this.label = label;
         this.description = description;
