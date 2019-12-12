@@ -54,8 +54,7 @@ public class DBWorker {
     
     public void addModel(Model model)
     {
-    	this.connection.add(model);
-    	
+    	this.connection.add(model);	
     }
     
     public void writeToFile(Model model, File file)
@@ -113,7 +112,6 @@ public class DBWorker {
 	
 	public  TupleQueryResult executeQuery(String query) {
 		TupleQueryResult res = null;
-		this.connection.begin();
 
 			TupleQuery tupleQuery = this.connection
 				      .prepareTupleQuery(QueryLanguage.SPARQL, query);
@@ -130,7 +128,6 @@ public class DBWorker {
 	        } finally {
 	          res.close();
 	        }    
-		    this.connection.close();
 		return res;
 	}
 	

@@ -14,13 +14,9 @@ public class Organization extends SimpleObject{
     private String label;
     private String description;
     private Location location;
-    public Organization(){
-    }
 
     public Organization(int id, String label, String description, Location location) {
-        this.id = id;
-        this.label = label;
-        this.description = description;
+    	super(id, label, description);
         this.location = location;
     }
 

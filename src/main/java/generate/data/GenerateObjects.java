@@ -104,7 +104,6 @@ public class GenerateObjects {
                 	{
                 		people.set(cnt, new Person(cnt, last_name + " " + first_name, description, getRandomDate()));
                 		cnt++;
-                		System.out.println(cnt);
                 		if (cnt >= num)
                 		{
                 			this.util.addPerson(builder, people);
@@ -131,16 +130,17 @@ public class GenerateObjects {
 		int cnt = 0;
 		try{
             BufferedReader location_reader;
-            location_reader = new BufferedReader(new FileReader("data/vietnamese-namedb/girl.txt"));
-            String des;
-            while((des = location_reader.readLine()) != null) 
+            location_reader = new BufferedReader(new FileReader("data/location/hanoi.txt"));
+            String name;
+            while((name = location_reader.readLine()) != null) 
             {
-            	locations.set(cnt, new Location(cnt, des, ""));
+            	locations.set(cnt, new Location(cnt, name, ""));
             	cnt++;
         		if (cnt >= num)
         		{
         			this.util.addLocation(builder, locations);
         			location_reader.close();
+        			return locations ;
         		}
             }
             this.util.addLocation(builder, locations);
@@ -151,5 +151,147 @@ public class GenerateObjects {
         return locations ;
 	}
 	
+	public ArrayList<Event> generateEvent(ModelBuilder builder, ArrayList<Location> locations, int num)
+	{
+		ArrayList<Event> events = new ArrayList<Event>(Arrays.asList(new Event[num]));
+		int cnt = 0;
+		try{
+            BufferedReader name_reader, description_reader;
+            name_reader = new BufferedReader(new FileReader("data/event/festival.txt"));
+            description_reader = new BufferedReader(new FileReader("data/event/description.txt"));
+            String  namei, descriptioni;
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<String> descriptions = new ArrayList<String>();
+             
+            while((namei = name_reader.readLine()) != null) names.add(namei);
+            while((descriptioni = description_reader.readLine()) != null) descriptions.add(descriptioni);
+            for (Location location: locations)
+            	for (String name: names)
+            		for (String description: descriptions)
+                	{
+            			events.set(cnt, new Event(cnt, name, description, getRandomDate(), location));
+                		cnt++;
+                		if (cnt >= num)
+                		{
+                			this.util.addEvent(builder, events);
+                			name_reader.close();
+                            description_reader.close();
+                            return events;
+                		}
+                	}    
+            
+            this.util.addEvent(builder, events);
+			name_reader.close();
+            description_reader.close();
+        } catch (IOException ex1) {
+            System.out.println("Error: "+ex1);
+        }
+        return events ;
+	}
+	
+	public ArrayList<Organization> generateOrganization(ModelBuilder builder, ArrayList<Location> locations, int num)
+	{
+		ArrayList<Organization> organizations = new ArrayList<Organization>(Arrays.asList(new Organization[num]));
+		int cnt = 0;
+		try{
+            BufferedReader organization_reader;
+            organization_reader = new BufferedReader(new FileReader("data/organization/organizations.txt"));
+            String name;
+            while((name = organization_reader.readLine()) != null) 
+            {
+            	for (Location location: locations)
+            	{
+            		organizations.set(cnt, new Organization(cnt, name, "", location));
+	            	cnt++;
+	        		if (cnt >= num)
+	        		{
+	        			this.util.addOrganization(builder, organizations);
+	        			organization_reader.close();
+	        			return organizations ;
+	        		}
+            	}
+            }
+            this.util.addOrganization(builder, organizations);
+			organization_reader.close();
+        } catch (IOException ex1) {
+            System.out.println("Error: "+ex1);
+        }
+        return organizations ;
+	}
+	
+	public ArrayList<Agreement> generateAgreement(ModelBuilder builder, ArrayList<Location> locations, int num)
+	{
+		ArrayList<Agreement> agreements = new ArrayList<Agreement>(Arrays.asList(new Agreement[num]));
+		int cnt = 0;
+		try{
+            BufferedReader name_reader, description_reader;
+            name_reader = new BufferedReader(new FileReader("data/aggrement/aggrements.txt"));
+            description_reader = new BufferedReader(new FileReader("data/aggrement/description.txt"));
+            String  namei, descriptioni;
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<String> descriptions = new ArrayList<String>();
+             
+            while((namei = name_reader.readLine()) != null) names.add(namei);
+            while((descriptioni = description_reader.readLine()) != null) descriptions.add(descriptioni);
+            for (Location location: locations)
+            	for (String name: names)
+            		for (String description: descriptions)
+                	{
+            			agreements.set(cnt, new Agreement(cnt, name, description, getRandomDate(), location));
+                		cnt++;
+                		if (cnt >= num)
+                		{
+                			this.util.addAgreement(builder, agreements);
+                			name_reader.close();
+                            description_reader.close();
+                            return agreements;
+                		}
+                	}    
+            
+            this.util.addAgreement(builder, agreements);
+			name_reader.close();
+            description_reader.close();
+        } catch (IOException ex1) {
+            System.out.println("Error: "+ex1);
+        }
+        return agreements ;
+	}
+	
+	public ArrayList<Country> generateCountry(ModelBuilder builder, int num)
+	{
+		ArrayList<Country> countries = new ArrayList<Country>(Arrays.asList(new Country[num]));
+		int cnt = 0;
+		try{
+            BufferedReader name_reader, description_reader;
+            name_reader = new BufferedReader(new FileReader("data/country/countries.txt"));
+            description_reader = new BufferedReader(new FileReader("data/country/description.txt"));
+            String  namei, descriptioni;
+            ArrayList<String> names = new ArrayList<String>();
+            ArrayList<String> descriptions = new ArrayList<String>();
+             
+            while((namei = name_reader.readLine()) != null) names.add(namei);
+            while((descriptioni = description_reader.readLine()) != null) descriptions.add(descriptioni);
+            	for (String name: names)
+            		for (String description: descriptions)
+                	{
+            			countries.set(cnt, new Country(cnt, name, description));
+                		cnt++;
+                		if (cnt >= num)
+                		{
+                			this.util.addCountry(builder, countries);
+                			name_reader.close();
+                            description_reader.close();
+                            return countries;
+                		}
+                	}    
+            
+            	this.util.addCountry(builder, countries);
+    			name_reader.close();
+                description_reader.close();
+        } catch (IOException ex1) {
+            System.out.println("Error: "+ex1);
+        }
+        return countries ;
+	}
 	
 }

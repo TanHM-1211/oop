@@ -20,9 +20,7 @@ public class Event extends SimpleObject{
    
 
 	public Event(int id, String label, String description, Date date, Location loccation) {
-		this.id = id;
-		this.label = label;
-		this.description = description;
+		super(id, label, description);
 		this.date = date;
 		this.loccation = loccation;
 	}

@@ -1,6 +1,8 @@
 package main;
+import java.util.ArrayList;
 import java.util.List;
 import generate.data.GenerateObjects;
+import model.Location;
 
 import org.eclipse.rdf4j.model.util.ModelBuilder;
 import org.mapdb.DB;
@@ -12,14 +14,21 @@ public class Main {
 
 	public static void main(String args[])
 	{
-		SimpleQuery sq = new SimpleQuery();
-		String q = sq.getDescriptionOfPerson("a");
-		System.out.println(q);
+//		SimpleQuery sq = new SimpleQuery();
+//		String q = sq.getDescriptionOfPerson("a");
+//		System.out.println(q);
 		DBWorker worker = new DBWorker();
-		System.out.println(worker.convertToString(worker.executeQuery(q)));
+//		System.out.println(worker.convertToString(worker.executeQuery(q)));
+		
 		GenerateObjects genO = new GenerateObjects();
 		ModelBuilder builder = new ModelBuilder();
-		genO.generatePerson(builder, 100000);
+		
+//		genO.generatePerson(builder, 100);
+		genO.generateCountry(builder, 100);
+//		ArrayList<Location> locations = genO.generateLocation(builder, 100); 
+//		genO.generateOrganization(builder, locations, 100);
+//		genO.generateEvent(builder, locations, 100);
+//		genO.generateAgreement(builder, locations, 100);
 		worker.addModel(builder.build());
 	}
 }

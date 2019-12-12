@@ -25,9 +25,7 @@ public class Agreement extends SimpleObject{
     
     
     public Agreement(int id, String label, String description, Date time, Location location) {
-		this.id = id;
-		this.label = label;
-		this.description = description;
+    	super(id, label, description);
 		this.date = time;
 		this.location = location;
 	}

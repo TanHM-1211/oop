@@ -14,13 +14,9 @@ public class Country extends SimpleObject{
     private String label;
     private String description;
     
-    public Country(){
-    }
     
     public Country(int id, String label, String description) {
-        this.id = id;
-        this.label = label;
-        this.description = description;
+    	super(id, label, description);
     }
     
 }
