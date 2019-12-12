@@ -1,4 +1,4 @@
-package main;
+package DAO;
 
 import org.eclipse.rdf4j.model.impl.SimpleLiteral;
 import org.eclipse.rdf4j.query.*;
