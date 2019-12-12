@@ -5,12 +5,13 @@
  */
 package ReadWriteFile;
 
-import initializer.Subject;
-import initializer.Object;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import model.Object;
+import model.Subject;
 
 /**
  *

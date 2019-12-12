@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package initializer;
+package model;
 
 /**
  *
  * @author BQ
  */
-public class Subject {
+public class Object {
     private String ID;
     private String label;
     private String description;
-    public Subject(){
+    public Object(){
     }
 
-    public Subject(String ID, String label, String description) {
+    public Object(String ID, String label, String description) {
         this.ID = ID;
         this.label = label;
         this.description = description;
     }
     
-    public Subject(String label) {
+    public Object(String label) {
         this.label = label;
     }
     

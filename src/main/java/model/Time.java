@@ -3,27 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package initializer;
+package model;
 
 /**
- *
+ * object Time
  * @author BQ
  */
-public class Object {
+public class Time {
     private String ID;
     private String label;
     private String description;
-    public Object(){
+    public Time(){
     }
 
-    public Object(String ID, String label, String description) {
+    public Time(String ID, String label, String description) {
         this.ID = ID;
         this.label = label;
         this.description = description;
     }
     
-    public Object(String label) {
+    public Time(String label) {
+        this.ID = ID;
         this.label = label;
+        this.description = description;
     }
     
     public String getLabel() {
@@ -34,4 +36,3 @@ public class Object {
         this.label = label;
     }
 }
-

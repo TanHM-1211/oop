@@ -5,7 +5,7 @@
  */
 package generateTestcase;
 
-import initializer.Subject;
+import model.Subject;
 
 /**
  *

@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package ReadWriteFile;
-import initializer.Subject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import model.Subject;
 /**
  *
  * @author BQ

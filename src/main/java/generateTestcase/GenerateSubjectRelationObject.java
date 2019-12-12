@@ -7,7 +7,8 @@ package generateTestcase;
 
 import ReadWriteFile.ReaderFromFile;
 import ReadWriteFile.WriterToFile;
-import initializer.Subject;
+import model.Subject;
+
 import java.util.Objects;
 import java.io.FileWriter;
 /**
@@ -20,7 +21,7 @@ public class GenerateSubjectRelationObject {
     
     public GenerateSubjectRelationObject(String subject, String object, String relation) {
         ReaderFromFile readerFromFile = new ReaderFromFile();
-        readerFromFile.Read(subjects, (initializer.Object[]) objects, subject, object);
+        readerFromFile.Read(subjects, (model.Object[]) objects, subject, object);
         
         int numSubjects = subjects.length;
         int numObjects = objects.length;

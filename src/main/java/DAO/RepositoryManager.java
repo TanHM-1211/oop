@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class RepositoryManager {
     private static final String GRAPHDB_SERVER = "http://localhost:7200/";
     private static final String REPOSITORY_ID = "oop_project";
-    private static final String prefix = "http://oop/";
-    private static final String property_prefix = "<http://oop/properties/>";
+    private static final String PREFIX = "http://oop/";
+    private static final String PROPERTY_PREFIX = "<http://oop/properties/>";
     private RepositoryConnection connection; 
     private Repository repository;
     
@@ -26,53 +26,41 @@ public class RepositoryManager {
     	connection = repository.getConnection();
     }
 	
-	public String insert(ArrayList<String> S, ArrayList<String>  P, ArrayList<String>  O, 
-			ArrayList<String>  typeS, ArrayList<String>  typeO) {
-		StringBuilder res = new StringBuilder("prefix :<" + prefix + ">" + "insert data {");
+	public String makeSimpleInsertQuery(ArrayList<String> S, ArrayList<String>  P, ArrayList<String>  O) {
+		StringBuilder res = new StringBuilder("PREFIX :<" + PREFIX + ">" + "insert data {");
 		for (int i = 0; i<S.size(); ++i)
 		{
-			res.append(" <");
-			res.append(prefix);
-			res.append(typeS.get(i));
-			res.append("/");
 			res.append(S.get(i));
-			res.append("> ");
-			
-			res.append(property_prefix);
-			res.append(":");
+			res.append(" ");
 			res.append(P.get(i));
-			
-			res.append(" <");
-			res.append(prefix);
-			res.append(typeO.get(i));
-			res.append("/");
+			res.append(" ");
 			res.append(O.get(i));
-			res.append(">.");			
+			res.append(".\n");
 		}
 		res.append("}");
 		return res.toString();
 	}
 	
-	public String getDescQuery(String S, String O, String P, 
+	public String makeSimpleSelectQuery(String S, String O, String P, 
 								String typeS, String typeO, boolean mask[]) {
 		String k = "";
 		if(mask[0]==true && mask[1]==false && mask[2]==false) {
-			k= "select * where{ <"+prefix+typeS+"/"+S+"> ?x ?y.}";
+			k= "select * where{ "+S+" ?y ?z.}";
 			
 		}else if(mask[0]==true && mask[1]==true && mask[2]==false) {
-			k= "select * where{ <"+prefix+typeS+"/"+S+"> "+property_prefix+":"+P+" ?x. }";
+			k= "select * where{ "+S+" "+P+" ?z. }";
 			
 		}else if(mask[0]==false && mask[1]==true && mask[2]==false) {
-			k= "select * where{ ?x "+property_prefix+":"+P+" ?y. }";
+			k= "select * where{ ?x "+P+" ?z. }";
 			
 		}else if(mask[0]==true && mask[1]==false && mask[2]==true) {
-			k= "select * where{ <"+prefix+typeS+"/"+S+"> "+"?y <"+prefix+typeO+"/"+O+">. }";
+			k= "select * where{ "+S+" ?y"+O+".}";
 			
 		}else if(mask[0]==false && mask[1]==true && mask[2]==true) {
-			k= "select * where{ ?x "+property_prefix+":"+P+" ?z. }";
+			k= "select * where{ ?x "+P+" " + O+". }";
 			
 		}else if(mask[0]==false && mask[1]==false && mask[2]==true) {
-			k= "select * where{ ?x ?y "+prefix+typeO+"/"+O+">. }";
+			k= "select * where{ ?x ?y"+O+".}";
 			
 		}else if(mask[0]==false && mask[1]==false && mask[2]==false) {
 			k= "select * where{?x ?y ?z}";
