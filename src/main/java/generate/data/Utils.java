@@ -113,7 +113,7 @@ public class Utils {
 			this.addSimple(builder, obj, ORGANIZATION, "organization");
 			builder.setNamespace("pref", ORGANIZATION)
 				.subject("pref:organization"+obj.getId())
-				.add("pref:hasLocation ", "<" + LOCATION + "/location"+obj.getLocation().getId() + ">");
+				.add("pref:hasLocation", " <" + LOCATION + "location"+obj.getLocation().getId() + "/>");
 		}
 	}
 	
@@ -123,7 +123,8 @@ public class Utils {
 		{
 			this.addSimple(builder, obj, AGREEMENT, "agreement");
 			builder.setNamespace("pref", AGREEMENT).subject("pref:agreement"+obj.getId())
-				.add("pref:takePlaceOn", obj.getDate());
+				.add("pref:takePlaceOn", obj.getDate())
+				.add("pref:hasLocation", " <" + LOCATION + "location"+obj.getLocation().getId() + "/>");
 		}
 	}
 	
@@ -135,7 +136,7 @@ public class Utils {
 			builder.setNamespace("pref", EVENT)
 				.subject("pref:event"+obj.getId())
 				.add("pref:takePlaceOn", obj.getDate())
-				.add("pref:hasLocation ", "<" + LOCATION + "/location"+obj.getLocation().getId() + ">");		
+				.add("pref:hasLocation", " <" + LOCATION + "location"+obj.getLocation().getId() + "/>");		
 		}
 	}
 	
