@@ -16,23 +16,16 @@ public class Main {
 	public static void main(String args[])
 	{
 		DBWorker worker = new DBWorker();
-//		SimpleQuery sq = new SimpleQuery();
-//		String q = sq.getDescriptionOfPerson("An An Bình");
-//		System.out.println(q);
-//		System.out.println(worker.convertToString(worker.executeQuery(q)));
+		SimpleQuery sq = new SimpleQuery();
 		
-		GenerateObjects genO = new GenerateObjects();
-		GenerateRelationship genr = new GenerateRelationship();
+		GenerateData gend = new GenerateData();
 		ModelBuilder builder = new ModelBuilder();
+		gend.generateObjects(builder, 100000);
+		worker.addModel(builder.build());
 		
-		ArrayList<Person> ps = genO.generatePerson(builder, 100);
-//		genO.generateCountry(builder, 100);
-//		ArrayList<Location> locations = genO.generateLocation(builder, 100); 
-//		genO.generateOrganization(builder, locations, 100);
-//		genO.generateEvent(builder, locations, 100);
-//		genO.generateAgreement(builder, locations, 100);
+		builder = new ModelBuilder();
 		Model model = builder.build();
-		genr.genPerPer(model, ps, ps, 100);
+		gend.generateRelationships(model, 100000);
 		worker.addModel(model);
 	}
 }

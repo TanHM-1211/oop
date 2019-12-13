@@ -25,12 +25,12 @@ public class GenerateRelationship {
 	private static final String LOCATION = "http://oop/location/";
 
     private static final String PREFIX = "http://oop/";
-	private ArrayList<Person> people;
-	private ArrayList<Event> events;
-	private ArrayList<Organization> organizations;
-	private ArrayList<Agreement> agreements;
-	private ArrayList<Location> locations;
-	private ArrayList<Country> countries;
+//	private ArrayList<Person> people;
+//	private ArrayList<Event> events;
+//	private ArrayList<Organization> organizations;
+//	private ArrayList<Agreement> agreements;
+//	private ArrayList<Location> locations;
+//	private ArrayList<Country> countries;
 	private List<String> rela;
 	private ValueFactory vf = SimpleValueFactory.getInstance();
 	
